@@ -4,6 +4,8 @@ import org.tbhizzle.*;
 import org.powerbot.script.methods.Bank.Amount;
 import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.wrappers.Item;
+import org.powerbot.script.wrappers.Locatable;
+import org.powerbot.script.wrappers.Tile;
 
 
 
@@ -13,15 +15,14 @@ public class Bank extends Task {
 		super(ctx);
 	}
 
-	public boolean activate() {
+	public boolean activate(Tile l) {
 		Item[] items = ctx.backpack.getAllItems();
 		for (Item i : items) {
 			if (i.getId() == 1436)// 1436 is ess
 				return false;
 		}
 		// close to banker and inventory does not have ess
-		return ctx.players.local().getLocation()
-				.distanceTo(KeySpot.BANK.getT())
+		return l.getLocation().distanceTo(KeySpot.BANK.getT())
 
 		<
 
@@ -54,5 +55,4 @@ public class Bank extends Task {
 
 		return ctx.bank.close();
 	}
-
 }

@@ -5,6 +5,7 @@ import org.tbhizzle.tasks.Task;
 import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.wrappers.GameObject;
 import org.powerbot.script.wrappers.Item;
+import org.powerbot.script.wrappers.Tile;
 
 public class Craft extends Task {
 	public Craft(MethodContext ctx) {
@@ -12,7 +13,7 @@ public class Craft extends Task {
 	}
 
 	@Override
-	public boolean activate() {
+	public boolean activate(Tile l) {
 		boolean ess = false;
 		// back pack has ess
 		// nearish to monument
@@ -23,8 +24,7 @@ public class Craft extends Task {
 				break;
 			}
 		}
-		return ess && ctx.players.local().getLocation()
-						.distanceTo(KeySpot.ALTAR.getT()) < 30;
+		return ess && l.distanceTo(KeySpot.ALTAR.getT()) < 30;
 	}
 
 	@Override

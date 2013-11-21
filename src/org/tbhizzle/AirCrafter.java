@@ -1,7 +1,6 @@
 package org.tbhizzle;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -11,6 +10,7 @@ import org.powerbot.event.MessageListener;
 import org.powerbot.event.PaintListener;
 import org.powerbot.script.Manifest;
 import org.powerbot.script.PollingScript;
+import org.powerbot.script.wrappers.Tile;
 
 import org.tbhizzle.tasks.*;
 import org.tbhizzle.tasks.crafting.*;
@@ -35,8 +35,9 @@ public class AirCrafter extends PollingScript implements MessageListener,
 
 	@Override
 	public int poll() {
+		Tile location = ctx.players.local().getLocation();
 		for (Task task : taskList) {
-			if (task.activate()) {
+			if (task.activate(location)) {
 				task.execute();
 				return 500;
 			}

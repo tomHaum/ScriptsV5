@@ -13,7 +13,7 @@ public class RunToBank extends Task {
 		super(ctx);
 	}
 
-	public boolean activate() {
+	public boolean activate(Tile l) {
 		// if it does not have ess
 		// and not in bank
 
@@ -22,10 +22,10 @@ public class RunToBank extends Task {
 			if (i.getId() == 1436)// 556 is air rune
 				return false;
 		}
-		Tile loc = ctx.players.local().getLocation();
-		return loc.distanceTo(KeySpot.ALTAR.getT()) > 30
+		
+		return l.distanceTo(KeySpot.ALTAR.getT()) > 30
 				&&
-				loc.distanceTo(KeySpot.BANK.getT()) >5;
+				l.distanceTo(KeySpot.BANK.getT()) >5;
 	}
 
 	public boolean execute() {

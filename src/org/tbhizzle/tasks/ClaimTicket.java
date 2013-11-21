@@ -3,6 +3,7 @@ package org.tbhizzle.tasks;
 import org.powerbot.script.methods.Hud;
 import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.wrappers.Item;
+import org.powerbot.script.wrappers.Tile;
 
 public class ClaimTicket extends Task {
 
@@ -10,7 +11,7 @@ public class ClaimTicket extends Task {
 		super(ctx);
 	}
 
-	public boolean activate() {
+	public boolean activate(Tile l) {
 		//24154
 		for(Item i:ctx.backpack.getAllItems()){
 			if(i.getId() == 24154){

@@ -5,6 +5,7 @@ import org.tbhizzle.tasks.Task;
 import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.wrappers.GameObject;
 import org.powerbot.script.wrappers.Item;
+import org.powerbot.script.wrappers.Tile;
 
 public class EnterRuins extends Task {
 
@@ -13,7 +14,7 @@ public class EnterRuins extends Task {
 	}
 
 	@Override
-	public boolean activate() {
+	public boolean activate(Tile l) {
 		// has ess
 		// close to ruins
 		boolean ess = false;
@@ -22,8 +23,7 @@ public class EnterRuins extends Task {
 				ess = true;
 		}
 		return ess
-				&& ctx.players.local().getLocation()
-						.distanceTo(KeySpot.RUINS.getT()) < 6;
+				&& l.distanceTo(KeySpot.RUINS.getT()) < 6;
 	}
 
 	@Override
